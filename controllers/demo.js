@@ -9,7 +9,12 @@ const getPrueba = function (req = request, res) {
     res.status(200).json({message:'Estamos en el controlador de url demo'})
 }
 
+const getRender = function (req = request, res) {            
+    res.status(200).json({message:'Estamos en el controlador de url render'})
+}
+
 module.exports = {
+    getRender,
     getDemo,
     getPrueba
 }
