@@ -1,10 +1,9 @@
 require('dotenv').config();
-const Server = require('./models/server');
 
-//Instancia de la clase Server
-const express = new Server();
+const Server = require ('./models/server');
 
-//Invocamos el método listen para levantar nuestro servidor
-express.listen();
+const svr = new Server();
+
+svr.listen();
 
 

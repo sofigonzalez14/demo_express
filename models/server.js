@@ -1,43 +1,27 @@
-const express = require('express');
-const cors = require('cors');
+const express = require('express'); 
 
-class Server {
+class server{
 
     constructor(){
-        this.app = express();
-        
-        //Seteo de puerto por defecto
         this.port = process.env.PORT || 3000;
         
-        this.middleware();
+        this.app = express();
 
-        this.router();
+        this.routers();
     }
 
-    middleware(){
-
-        //Cors
-        //TODO: Agregar alguna regla en caso que sea necesario
-        this.app.use(cors());
-
-        //Una vez configurada la carpeta pública, la ruta raíz (get('/') deja de funcionar
-        this.app.use(express.static('public'));
+    routers(){
+        this.app.get('/', function (req, res) {
+            res.send('Hello World')
+          });
     }
 
-    listen(){   
-        this.app.listen(this.port, () => {
-            console.log(`Example app listening on port ${this.port}`)
-        })  
+    listen(){
+        this.app.listen(this.port, () =>{
+            console.log(`App escuchando en el puerto ${this.port}`)
+        });
     }
-
-    router(){
-        this.app.use('/api/v1', require('../routes/demo') );
-
-        this.app.all('*', (req, res) => {
-            res.status(404).json({message:'404 Page Not Found'})
-        })
-    }
-
+    
 }
 
-module.exports = Server;
+module.exports = server;
